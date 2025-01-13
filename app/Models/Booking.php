@@ -17,6 +17,7 @@ class Booking extends Model
         'tanggal_turun',
         'status',
         'jumlah_pendaki',
+        'total',
     ];
 
     public function user()

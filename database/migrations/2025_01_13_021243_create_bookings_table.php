@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('tanggal_turun');
             $table->enum('status', ['Pending', 'Konfirmasi','Tolak']);
             $table->integer('jumlah_pendaki');
+            $table->integer('total');
             $table->timestamps();
         });
     }
