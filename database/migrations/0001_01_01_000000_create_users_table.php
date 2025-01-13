@@ -21,7 +21,7 @@ return new class extends Migration
             $table->enum('jenis_identitas', ['KTP', 'SIM', 'KTM']);
             $table->string('no_identitas')->unique();
             $table->string('no_hp')->unique();
-            $table->string('foto_identitas');
+            $table->string('foto_identitas')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
