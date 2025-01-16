@@ -12,30 +12,34 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');})->name('dashboard');
-    return view('dashboard');})->name('dashboard');
+    return view('dashboard');
+})->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
-    
+
 });
 
-Route::middleware('auth','user')->group(function(){
-    Route::get('/user',[UserController::class,'index'])->name('user.index');
+Route::middleware('auth', 'user')->group(function () {
+    Route::get('/user', [UserController::class, 'index'])->name('user.index');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
     Route::get('/booking-tiket', [BookingController::class, 'create'])->name('booking.tiket');
-    Route::get('/user/booking',[BookingController::class,'create'])->name('user.booking');
+    Route::get('/user/jalur/{jalur}', [JalurController::class, 'show'])->name('user.jalur');
+    Route::get('/user/bookings', [BookingController::class, 'show'])->name('user.booking.show');
     Route::get('/user/jalur/{jalur}', [JalurController::class, 'index'])->name('user.jalur');
     Route::get('/dashboard', function () {
-        return view('dashboard');})->name('dashboard');
+        return view('dashboard');
+    })->name('dashboard');
 });
 
-Route::middleware('auth','admin')->group(function(){
-    Route::get('/admin/pendaki',[UserController::class,'index'])->name('admin.index');
+Route::middleware('auth', 'admin')->group(function () {
+    Route::get('/admin/pendaki', [UserController::class, 'index'])->name('admin.index');
     Route::get('/admin/show/user/{id}', [UserController::class, 'show'])->name('admin.user.show');
     Route::delete('/admin/user/{user}', [UserController::class, 'destroy'])->name('admin.user.destroy');
-    Route::get('/admin/jalur',[JalurController::class, 'index'])->name('admin.jalur');
+    Route::get('/admin/jalur', [JalurController::class, 'index'])->name('admin.jalur');
     Route::get('/admin/jalur/create', [JalurController::class, 'create'])->name('admin.jalur.create');
     Route::post('/admin/jalur', [JalurController::class, 'store'])->name('admin.jalur.store');
     Route::get('/admin/jalur/{jalur}', [JalurController::class, 'show'])->name('admin.jalur.show');
@@ -46,4 +50,4 @@ Route::middleware('auth','admin')->group(function(){
     Route::get('/admin/boking', [BookingController::class, 'index'])->name('admin.booking');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

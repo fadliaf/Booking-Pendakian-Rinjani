@@ -17,7 +17,7 @@
             <!-- Album Section -->
             <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 @foreach($jalurs as $jalur)
-                    <a href="{{ route('user.jalur', $jalur->id) }}" class="bg-gray-100 bg-opacity-90 p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-200">
+                    <a class="bg-gray-100 bg-opacity-90 p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-200">
                         <h3 class="font-semibold text-lg text-gray-800">{{ $jalur->nama_jalur }}</h3>
                         <p class="text-gray-600">{{ $jalur->deskripsi }}</p>
                         <p class="mt-2 text-gray-600">Tanggal: {{ $jalur->tanggal }}</p>

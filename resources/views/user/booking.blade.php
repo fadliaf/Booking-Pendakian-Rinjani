@@ -16,7 +16,7 @@
                             <x-input-label for="id_jalur" :value="__('Nama Jalur')" />
                             <select id="id_jalur" name="id_jalur" class="block mt-1 w-full" required>
                                 <option value="" disabled selected>{{ __('Pilih Nama Jalur') }}</option>
-                                @foreach($jalur as $j)
+                                @foreach($jalurs as $j)
                                     <option value="{{ $j->id }}">{{ $j->nama_jalur }}</option>
                                 @endforeach
                             </select>
