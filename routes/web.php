@@ -27,9 +27,8 @@ Route::middleware('auth', 'user')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
     Route::get('/booking-tiket', [BookingController::class, 'create'])->name('booking.tiket');
-    Route::get('/user/jalur/{jalur}', [JalurController::class, 'show'])->name('user.jalur');
+    Route::get('/user/jalur/{nama_jalur}', [JalurController::class, 'listByName'])->name('user.jalur');
     Route::get('/user/bookings', [BookingController::class, 'show'])->name('user.booking.show');
-    Route::get('/user/jalur/{jalur}', [JalurController::class, 'index'])->name('user.jalur');
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');

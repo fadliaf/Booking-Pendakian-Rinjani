@@ -92,4 +92,20 @@ class JalurController extends Controller
         return redirect()->route('admin.jalur')->with('success', 'Jalur berhasil diperbarui.');
     }
 
+    public function listByName($nama_jalur)
+    {
+        // Cari semua jalur dengan nama yang sama
+        $jalurs = Jalur::where('nama_jalur', $nama_jalur)->get();
+
+        // Pastikan ada data yang ditemukan, jika tidak bisa memberi pesan atau redirect
+        if ($jalurs->isEmpty()) {
+            return redirect()->route('home')->with('error', 'Jalur tidak ditemukan!');
+        }
+
+        // Kirimkan data jalur ke view
+        return view('user.jalur', compact('jalurs'));
+    }
+
+
+
 }
