@@ -37,14 +37,18 @@ class RegisteredUserController extends Controller
             'jenis_identitas' => ['required', 'string', 'max:50'],  
             'no_identitas' => ['required', 'string', 'max:50'],
             'no_hp' => ['required', 'string', 'max:20'],
-            'foto_identitas' => ['nullable', 'image', 'max:2048'],  
+            'foto_identitas' => ['required', 'file', 'image', 'max:2048'],  
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $fotoIdentitas = null;
         if ($request->hasFile('foto_identitas')) {
-            $fotoIdentitas = $request->file('foto_identitas')->store('identitas', 'public');
+            $fotoIdentitas = $request->file('foto_identitas');
+            $namaFile = uniqid() . '.' . $fotoIdentitas->getClientOriginalExtension();
+            $path = $fotoIdentitas->storeAs('identitas', $namaFile, 'public');
         }
+        
+        
 
         $user = User::create([
             'name' => $request->name,
@@ -55,7 +59,7 @@ class RegisteredUserController extends Controller
             'jenis_identitas' => $request->jenis_identitas,
             'no_identitas' => $request->no_identitas,
             'no_hp' => $request->no_hp,
-            'foto_identitas' => $fotoIdentitas,
+            'foto_identitas' => $namaFile,
             'password' => Hash::make($request->password),
         ]);
 
