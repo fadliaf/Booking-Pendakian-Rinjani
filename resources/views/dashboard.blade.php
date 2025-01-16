@@ -17,13 +17,6 @@
         style="background-image: url('images/gunungrinjanilombok21.jpg'); background-size: cover; background-position: center;"
     >
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <!-- Dashboard Info -->
-            <div class="bg-white bg-opacity-80 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
-
             <!-- Album Section -->
             <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 <!-- Album 1 -->
