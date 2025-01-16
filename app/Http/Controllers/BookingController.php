@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 class BookingController extends Controller
 {
     public function create()
-
     {
         $jalurs = Jalur::all();
         return view('user.booking', compact('jalurs'));
@@ -72,5 +71,29 @@ class BookingController extends Controller
     {
         $bookings = Booking::all(); // Ambil semua data jalur
         return view('admin.booking.index', compact('bookings')); // Kirim ke view jalur.index
+    }
+
+    public function detail($id)
+    {
+        // Cari booking berdasarkan ID
+        $booking = Booking::with(['user', 'jalur'])->findOrFail($id);
+
+        // Kirim data ke view
+        return view('admin.booking.show', compact('booking'));
+    }
+
+    public function update($id, $status)
+    {
+        $booking = Booking::findOrFail($id);
+
+        if (!in_array($status, ['Konfirmasi', 'Tolak'])) {
+            return redirect()->back()->withErrors(['status' => 'Status tidak valid.']);
+        }
+
+        $booking->status = $status;
+        $booking->save();
+
+        return redirect()->route('admin.booking.detail', $id)
+            ->with('success', 'Status booking berhasil diperbarui menjadi ' . ucfirst($status) . '.');
     }
 }

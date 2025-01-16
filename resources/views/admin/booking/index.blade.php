@@ -28,24 +28,30 @@
                                 @foreach($bookings as $booking)
                                     <tr>
                                         <td class="border border-gray-300 px-4 py-2 text-center">{{ $loop->iteration }}</td>
-                                        <td class="border border-gray-300 px-4 py-2">{{ $booking->user->name }}</td>
-                                        <td class="border border-gray-300 px-4 py-2">{{ $booking->jalur->nama_jalur }}</td>
-                                        <td class="border border-gray-300 px-4 py-2 text-center">{{ $booking->tanggal_naik }}</td>
-                                        <td class="border border-gray-300 px-4 py-2 text-center">{{ $booking->tanggal_turun }}</td>
-                                        <td class="border border-gray-300 px-4 py-2 text-center">{{ $booking->status }}</td>
-                                        <td class="border border-gray-300 px-4 py-2">
-                                            <div class="flex items-center justify-center space-x-2">
-                                                <a href="{{ route('admin.booking.show', $booking->id) }}" class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-700">
-                                                    Detail
-                                                </a>
-                                                <form action="{{ route('admin.booking.destroy', $booking->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus booking ini?');">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700">
-                                                        Hapus
-                                                    </button>
-                                                </form>
-                                            </div>
+                                        <td class="border border-gray-300 px-4 py-2 text-center">{{ $booking->user->name }}
+                                        </td>
+                                        <td class="border border-gray-300 px-4 py-2 text-center">
+                                            {{ $booking->jalur->nama_jalur }}</td>
+                                        <td class="border border-gray-300 px-4 py-2 text-center">
+                                            {{ $booking->tanggal_naik }}</td>
+                                        <td class="border border-gray-300 px-4 py-2 text-center">
+                                            {{ $booking->tanggal_turun }}</td>
+                                        <td class="border border-gray-300 px-4 py-2 text-center">
+                                            <span class="
+                                                    px-2 py-1 rounded text-white 
+                                                    @if ($booking->status === 'Pending') text-amber-500 
+                                                    @elseif ($booking->status === 'Konfirmasi') text-green-500 
+                                                    @elseif ($booking->status === 'Tolak') text-red-700 
+                                                    @endif
+                                                ">
+                                                {{ ucfirst($booking->status) }}
+                                            </span>
+                                        </td>
+                                        <td class="border border-gray-300 px-4 py-2 flex justify-center">
+                                            <a href="{{ route('admin.booking.detail', $booking->id) }}"
+                                                class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-700">
+                                                Detail
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach

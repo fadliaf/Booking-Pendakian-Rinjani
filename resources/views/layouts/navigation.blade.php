@@ -19,7 +19,7 @@
                         <x-nav-link :href="route('admin.jalur')" :active="request()->routeIs('admin.dashboard')">
                             {{ __('Jalur') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('admin.booking')" :active="request()->routeIs('admin.dashboard')">
+                        <x-nav-link :href="route('admin.booking.index')" :active="request()->routeIs('admin.dashboard')">
                             {{ __('Booking') }}
                         </x-nav-link>
                     @else   

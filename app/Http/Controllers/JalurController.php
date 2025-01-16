@@ -14,7 +14,7 @@ class JalurController extends Controller
         if (Auth::check()) {
             if ($user = Auth::user()->role === 'Admin') {
                 // Arahkan ke tampilan untuk admin
-                return view('admin.jalur.show', compact('jalur'));
+                return view('admin.jalur.index', compact('jalurs'));
             } elseif ($user = Auth::user()->role === 'User') {
                 return view('user.jalur', compact('jalurs'));
             }
@@ -91,31 +91,5 @@ class JalurController extends Controller
 
         return redirect()->route('admin.jalur')->with('success', 'Jalur berhasil diperbarui.');
     }
-
-
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'nama_jalur' => 'required|string|max:255',
-    //         'tanggal' => 'required|date',
-    //         'jumlah_kuota' => 'required|integer|min:1',
-    //         'alamat' => 'required|string|max:255',
-    //     ]);
-
-    //     Jalur::create([
-    //         'nama_jalur' => $request->nama_jalur,
-    //         'tanggal' => $request->tanggal,
-    //         'jumlah_kuota' => $request->jumlah_kuota,
-    //         'alamat' => $request->alamat,
-    //     ]);
-
-    //     return redirect()->route('admin.jalur')->with('success', 'Jalur berhasil ditambahkan.');
-    // }
-
-    // public function show($id)
-    // {
-    //     $jalur = Jalur::findOrFail($id); 
-    //     return view('admin.jalur.show', compact('jalur'));
-    // }
 
 }

@@ -42,12 +42,14 @@ Route::middleware('auth', 'admin')->group(function () {
     Route::get('/admin/jalur', [JalurController::class, 'index'])->name('admin.jalur');
     Route::get('/admin/jalur/create', [JalurController::class, 'create'])->name('admin.jalur.create');
     Route::post('/admin/jalur', [JalurController::class, 'store'])->name('admin.jalur.store');
-    Route::get('/admin/jalur/{jalur}', [JalurController::class, 'show'])->name('admin.jalur.show');
+    Route::get('/admin/jalur/{id}', [JalurController::class, 'show'])->name('admin.jalur.show');
     Route::delete('/admin/jalur/{jalur}', [JalurController::class, 'destroy'])->name('admin.jalur.destroy');
     Route::get('/admin/jalur/{jalur}/edit', [JalurController::class, 'edit'])->name('admin.jalur.edit');
     Route::put('/admin/jalur/{jalur}', [JalurController::class, 'update'])->name('admin.jalur.update');
     Route::delete('/admin/jalur/{jalur}', [JalurController::class, 'destroy'])->name('admin.jalur.destroy');
-    Route::get('/admin/boking', [BookingController::class, 'index'])->name('admin.booking');
+    Route::get('/admin/booking', [BookingController::class, 'index'])->name('admin.booking.index');
+    Route::get('/admin/booking/{id}', [BookingController::class, 'detail'])->name('admin.booking.detail');
+    Route::put('/admin/booking/{id}/status/{status}', [BookingController::class, 'update'])->name('admin.booking.update');
 });
 
 require __DIR__ . '/auth.php';
