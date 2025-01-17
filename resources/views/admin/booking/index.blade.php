@@ -38,7 +38,7 @@
                                             {{ $booking->tanggal_turun }}</td>
                                         <td class="border border-gray-300 px-4 py-2 text-center">
                                             <span class="
-                                                    px-2 py-1 rounded text-white 
+                                                    px-2 py-1 rounde 
                                                     @if ($booking->status === 'Pending') text-amber-500 
                                                     @elseif ($booking->status === 'Konfirmasi') text-green-500 
                                                     @elseif ($booking->status === 'Tolak') text-red-700 

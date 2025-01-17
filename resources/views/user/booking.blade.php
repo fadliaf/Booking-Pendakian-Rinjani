@@ -17,7 +17,7 @@
                             <select id="id_jalur" name="id_jalur" class="block mt-1 w-full" required>
                                 <option value="" disabled selected>{{ __('Pilih Nama Jalur') }}</option>
                                 @foreach($jalurs as $j)
-                                    <option value="{{ $j->id }}">{{ $j->nama_jalur }}</option>
+                                    <option value="{{ $j->id }}">{{ $j->nama_jalur }}, {{ $j->tanggal }},  {{ $j->jumlah_kuota }}</option>
                                 @endforeach
                             </select>
                             <x-input-error :messages="$errors->get('id_jalur')" class="mt-2" />

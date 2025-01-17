@@ -62,13 +62,12 @@
                             <!-- Status -->
                             <div class="mb-4">
                                 <strong>Status:</strong>
-                                <span class="px-2 py-1 rounded text-white 
-                                        @if ($booking->status === 'Pending') text-amber-500 
-                                        @elseif ($booking->status === 'Konfirmasi') text-green-500 
-                                        @elseif ($booking->status === 'Tolak') text-red-700
-                                        @endif
-                                        ">
-                                    {{ ucfirst($booking->status) }}
+                                <span class="px-2 py-1 rounded 
+                                            @if($booking->status == 'Pending') text-amber-500
+                                            @elseif($booking->status == 'Konfirmasi') text-green-500
+                                            @elseif($booking->status == 'Tolak') text-red-500
+                                            @endif">
+                                    {{ ucfirst(strtolower($booking->status)) }}
                                 </span>
                             </div>
                         </div>
@@ -76,7 +75,7 @@
                         <!-- Foto Identitas -->
                         <div class="flex justify-center items-start">
                             @if ($booking->user->foto_identitas)
-                                <img src="{{ asset('storage/' . $booking->user->foto_identitas) }}" alt="Foto Identitas"
+                                <img src="{{ asset('storage/identitas/' . $booking->user->foto_identitas) }}" alt="Foto Identitas"
                                     class="w-64 h-auto rounded shadow">
                             @else
                                 <p class="text-gray-500">Foto identitas tidak tersedia.</p>
